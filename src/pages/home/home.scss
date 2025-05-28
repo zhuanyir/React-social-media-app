@@ -1,0 +1,11 @@
+@use "../../style.scss" as *;
+
+
+.home{
+     @include themify($themes) { 
+
+      background-color:themed("bgSoft");
+
+      padding: 20px 70px;
+
+     }}

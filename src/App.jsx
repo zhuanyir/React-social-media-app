@@ -1,35 +1,79 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+// import './App.css'
+import "./style.scss";
+import Register from './pages/register/Register';
+import Login from "./pages/login/Login";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  Navigate,
+} from "react-router";
+
+import NavBar from "./components/navBar/NavBar";
+import LeftBar from './components/leftBar/LeftBar';
+import RightBar from "./components/rightBar/RightBar";
+import Home from "./pages/home/Home";
+import Profile from "./pages/profile/Profile";
+
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
+const currentUser=true;
+  const Layout = ()=>{
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="theme-dark">
+      <NavBar />
+      <div style={{display:"flex"}}>
+        <LeftBar />
+        <div className="mainContent">
+        <Outlet />
+        </div>
+        <RightBar />
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
+  };
+
+  const ProtecteRoute =({children}) =>{
+    if(!currentUser){
+      return <Navigate to="/login" />;
+    }
+
+    return children;
+  };
+
+
+const router = createBrowserRouter([
+  {
+    path:"/",
+    element:(<ProtecteRoute><Layout/></ProtecteRoute>),
+    children:[
+      {
+        path:"/",
+        element:<Home />
+      },
+       {
+        path:"profile/:id",
+        element:<Profile />
+      }
+    ]
+  },
+ 
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+]);
+
+    return <RouterProvider router={router} />
 }
 
-export default App
+export default App;
