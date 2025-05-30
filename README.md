@@ -1,4 +1,4 @@
-# React-SAS-social-media-app
+# React-SCSS-social-media-app
 Social media app with React,Dark/Light Mode &amp; Responsive in Apple 12 and air tablet.
 A dark and light mode toggle.
 Using HTML CSS React and SAS to realize the style.
