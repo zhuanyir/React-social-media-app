@@ -7,7 +7,7 @@ $themes: (
         bg:white,
         textColor:black,
         logo: darkblue,
-        bgSoft:white,
+        bgSoft:rgb(242, 246, 247),
         textColorsoft:#555,
         border:lightgrey,
 
@@ -65,5 +65,21 @@ body {
   @include themify($themes) {
     background-color: themed("bgSoft");
     color: themed("textColor");
+  }
+}
+
+
+
+@mixin tablet {
+  @media(max-width:960px) {
+    @content;
+
+  }
+}
+
+@mixin mobile {
+  @media(max-width:480px) {
+    @content;
+
   }
 }

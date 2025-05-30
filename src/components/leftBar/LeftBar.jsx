@@ -13,17 +13,21 @@ import Messages from "../../assets/messages.png";
 import Tutorials from "../../assets/tutorials.png";
 import Videos from "../../assets/videos.png";
 import Watch from "../../assets/watch.png";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
 
 
 
 const LeftBar = () => {
+ const {currentUser}= useContext(AuthContext);
+
     return (
         <div className="leftBar">
             <div className="container">
                 <div className="menu">
                     <div className="user">
-                        <img src="https://images.pexels.com/photos/963060/pexels-photo-963060.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="sunflower" />
-                        <span>zhuanyi Zhu</span>
+                        <img src={currentUser.profilePic} alt="sunflower" />
+                        <span>{currentUser.name}</span>
                     </div>
                      <div className="item">
                          <img src={Friends} alt="" />

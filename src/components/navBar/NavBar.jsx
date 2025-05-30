@@ -8,13 +8,18 @@ import NotificationsTwoToneIcon from '@mui/icons-material/NotificationsTwoTone';
 import MailTwoToneIcon from '@mui/icons-material/MailTwoTone';
 import PersonOutlineTwoToneIcon from '@mui/icons-material/PersonOutlineTwoTone';
 import SearchTwoToneIcon from '@mui/icons-material/SearchTwoTone';
-
+import { useContext } from "react";
+import { DarkModeContext } from "../../context/darkModeContext";
+import { AuthContext } from "../../context/authContext";
 
 
 
 
 
 const NavBar = () => {
+    const {toggle, darkMode} = useContext(DarkModeContext);
+    const {currentUser}= useContext(AuthContext);
+
     return (
         <div className="navBar">
             <div className="left">
@@ -22,7 +27,7 @@ const NavBar = () => {
                 <span>ConnectSphere</span>
                 </Link>
                 <HomeTwoToneIcon/>
-                <DarkModeTwoToneIcon/>
+               {!darkMode ? <DarkModeTwoToneIcon onClick={toggle} />: <WbSunnyTwoToneIcon onClick={toggle}/>}
                 <AppsTwoToneIcon/>
                 <div className="search">
                 <SearchTwoToneIcon/>
@@ -36,8 +41,8 @@ const NavBar = () => {
              <MailTwoToneIcon/>
              <NotificationsTwoToneIcon/> 
              <div className="user">
-                <img src="https://images.pexels.com/photos/963060/pexels-photo-963060.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="sunflower" />
-                <span>zhuanyi Zhu</span>
+                <img src={currentUser.profilePic} alt="sunflower" />
+                <span>{currentUser.name}</span>
             </div> 
             </div>
            
