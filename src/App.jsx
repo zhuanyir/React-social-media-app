@@ -4,7 +4,7 @@ import "./style.scss";
 import Register from './pages/register/Register';
 import Login from "./pages/login/Login";
 import {
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider,
   Outlet,
   Navigate,
@@ -53,13 +53,14 @@ const {darkMode} = useContext(DarkModeContext)
   };
 
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path:"/",
-    element:(<ProtecteRoute><Layout/></ProtecteRoute>),
+    // element:(<ProtecteRoute><Layout/></ProtecteRoute>),     wait to do, now only for test profile route
+    element: <Layout/>,
     children:[
       {
-        path:"/",
+        index:true,
         element:<Home />
       },
        {
@@ -70,13 +71,14 @@ const router = createBrowserRouter([
   },
  
   {
-    path: "/login",
+    path: "login",
     element: <Login />,
   },
   {
-    path: "/register",
+    path: "register",
     element: <Register />,
   },
+  { path: "*", element: <Navigate to="/" /> }
 ]);
 
     return <RouterProvider router={router} />
