@@ -56,8 +56,8 @@ const {darkMode} = useContext(DarkModeContext)
 const router = createHashRouter([
   {
     path:"/",
-    // element:(<ProtecteRoute><Layout/></ProtecteRoute>),     wait to do, now only for test profile route
-    element: <Layout/>,
+      element:(<ProtecteRoute><Layout/></ProtecteRoute>),     
+    // element: <Layout/>,    wait to do, now only for test profile route
     children:[
       {
         index:true,
